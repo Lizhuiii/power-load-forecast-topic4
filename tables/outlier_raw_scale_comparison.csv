@@ -1,0 +1,9 @@
+列,3σ 检出,IQR×1.5 检出,IQR×3.0 检出,IQR×1.5 占该列(%)
+temperature,89,142,0,0.271
+humidity,209,291,0,0.555
+wind_speed,0,0,0,0.0
+general_diffuse_flows,23,2315,0,4.417
+diffuse_flows,1361,4571,1690,8.721
+zone1_power_consumption,0,0,0,0.0
+zone2_power_consumption,1,7,0,0.013
+zone3_power_consumption,653,1191,18,2.272

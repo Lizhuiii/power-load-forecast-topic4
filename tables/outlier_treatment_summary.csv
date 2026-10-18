@@ -1,0 +1,9 @@
+列,判定方法,标记为异常,占比(%),替换方式,替换后仍缺失
+temperature,仅物理范围检查,0,0.0,不替换,0
+humidity,仅物理范围检查,0,0.0,不替换,0
+wind_speed,仅物理范围检查,0,0.0,不替换,0
+general_diffuse_flows,仅物理范围检查,0,0.0,不替换,0
+diffuse_flows,仅物理范围检查,0,0.0,不替换,0
+zone1_power_consumption,残差 MAD×4 + 孤立性,431,0.8223,时间线性插值,0
+zone2_power_consumption,残差 MAD×4 + 孤立性,313,0.5971,时间线性插值,0
+zone3_power_consumption,残差 MAD×4 + 孤立性,342,0.6525,时间线性插值,0
