@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 说明：data/processed、figures、tables 为 notebook 运行后生成的产物，
+# 如需纳入版本管理请删除下方注释；默认保留（空目录用 .gitkeep 占位）。
+# data/processed/
+# figures/
+# tables/
