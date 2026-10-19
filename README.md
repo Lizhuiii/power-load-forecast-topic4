@@ -20,16 +20,37 @@ python/
 ## 环境
 
 - Python 3.12，建议用虚拟环境：`python -m venv .venv` 后 `source .venv/Scripts/activate`
-- 依赖：`pip install pandas numpy matplotlib jupyter`
+- 依赖：`pip install pandas numpy matplotlib jupyter scikit-learn`
 - 中文显示：notebook 内已配置 `plt.rcParams["font.sans-serif"] = ["Microsoft YaHei", ...]`
 
 ## 运行顺序（notebook）
 
-1. `project/01_data_cleaning.ipynb` —— 清洗，导出 `data/processed/power_load_cleaned.csv`
-2. `02_load_patterns.ipynb` —— 日/周/季节负荷规律 + 分区对比（B）
-3. `04_weather_correlation.ipynb` —— 气象-负荷相关性热力图（B）
-4. `03_forecast_model.ipynb` —— 线性回归 vs 随机森林 预测对比（A）
-5. `05_final_figures.ipynb` —— 成品图统一重绘（C）
+| 顺序 | notebook | 内容 | 负责人 | 状态 |
+|---|---|---|---|---|
+| 1 | `project/01_data_cleaning.ipynb` | 清洗，导出 `data/processed/power_load_cleaned.csv` | A | ✅ |
+| 2 | `project/02_load_patterns.ipynb` | 日/周/季节负荷规律 + 分区对比 | B | ✅ |
+| 3 | `project/04_weather_correlation.ipynb` | 气象-负荷相关性热力图 | B | ✅ |
+| 4 | `project/03_forecast_model.ipynb` | 线性回归 vs 随机森林 预测对比 | A | ✅ |
+| 5 | `05_final_figures.ipynb` | 成品图统一重绘 | C | 待做 |
+
+> `03` 依赖 `data/processed/power_load_cleaned.csv`，须先跑 `01`。
+
+## 建模结果摘要（03_forecast_model）
+
+预测口径：**日前（day-ahead）**，特征只用 ≥1 天前的观测；训练 2017-01-08～10-31，测试 2017-11-01～12-30。
+
+| 模型 | RMSE (kW) | MAE (kW) | R² | MAPE |
+|---|---|---|---|---|
+| 持续性基线（抄前一日同时刻） | 3,228.6 | 2,120.3 | 0.9484 | 3.40% |
+| 线性回归 | 2,429.0 | 1,795.1 | 0.9708 | 2.89% |
+| **随机森林** | **2,301.7** | **1,639.5** | **0.9738** | **2.64%** |
+
+关键结论（详见 notebook 步骤 11）：
+
+1. 随机森林只在**总负荷**上最优（较线性回归 RMSE 低 5.2%），但在 Zone1/Zone2 上**线性回归更好**，Zone3 上三个模型**全部不如持续性基线**——汇总指标会掩盖分区差异。
+2. Zone3 的误差来自**分布漂移**（8–9 月负荷退出）：RMSE 11 月约 1,790 kW、12 月降到约 710 kW，随水平稳定而衰减。对策是滚动重训练，而非换模型。
+3. 特征重要性 `lag_144` 占 94.6%。消融显示：仅时间+气象时随机森林 R²=0.924（冷启动可用），加入 `lag_144` 后升到 0.971；但**线性回归在仅时间+气象时 R²=−0.883**，是 `dayofyear` 线性外推的经典灾难。
+4. 测试期残差均值 +639 kW，早 7 时偏差最大（+1,667 kW），冬季早高峰爬坡被系统性高估。
 
 ## 成员分工
 
