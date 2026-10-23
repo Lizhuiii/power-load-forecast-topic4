@@ -11,7 +11,7 @@ python/
 │   ├── raw/      原始数据（题4_城市电力负荷.csv，由 课程要求/数据集 复制而来）
 │   └── processed/ 清洗后数据（01 notebook 导出，下游唯一入口）
 ├── notebooks/   各分析 notebook（当前 01 暂放在 project/ 下）
-├── figures/     图表输出（cleaning/ 为清洗阶段图）
+├── figures/     图表输出（cleaning/ 清洗阶段图、model/ 建模图，均为 300 dpi）
 ├── tables/      统计表输出
 ├── project/     执行计划、已编写的 notebook
 └── 课程要求/    老师下发的报告模板、要求、数据集
@@ -51,6 +51,25 @@ python/
 2. Zone3 的误差来自**分布漂移**（8–9 月负荷退出）：RMSE 11 月约 1,790 kW、12 月降到约 710 kW，随水平稳定而衰减。对策是滚动重训练，而非换模型。
 3. 特征重要性 `lag_144` 占 94.6%。消融显示：仅时间+气象时随机森林 R²=0.924（冷启动可用），加入 `lag_144` 后升到 0.971；但**线性回归在仅时间+气象时 R²=−0.883**，是 `dayofyear` 线性外推的经典灾难。
 4. 测试期残差均值 +639 kW，早 7 时偏差最大（+1,667 kW），冬季早高峰爬坡被系统性高估。
+
+### 图表与预测文件（供 C 出图 / PPT 使用）
+
+- **图表**：`figures/model/fig01~fig06_*.png`，统一 **300 dpi**，命名规则 `fig0N_主题.png`
+  | 文件 | 内容 |
+  |---|---|
+  | `fig01_pred_vs_actual.png` | 测试期预测 vs 实际（全期 + 一周放大） |
+  | `fig02_scatter.png` | 三模型预测散点 |
+  | `fig03_feature_importance.png` | 随机森林特征重要性 Top15 |
+  | `fig04_error_breakdown.png` | 分月 RMSE + 分区偏差率 |
+  | `fig05_residual_hour.png` | 残差按小时分布 |
+  | `fig06_ablation.png` | 特征消融（S1/S2/S3） |
+- **预测结果**：`tables/predictions/`
+  | 文件 | 列 | 行数 |
+  |---|---|---|
+  | `total_prediction.csv` / `zone1~zone3_prediction.csv` | `datetime, y_true, y_pred_lr, y_pred_rf` | 8,640（测试期） |
+  | `s1_lr_prediction.csv` | `datetime, y_true, y_pred, residual` | 8,640（S1 仅时间+气象的线性回归） |
+
+> `s1_lr_prediction.csv` 用于核对 fig06 里那根 R²=−0.883 的负柱子：**不是预测值爆炸，而是随外推距离增大的系统性低估**（11 月低估 12,114 kW、12 月低估 22,889 kW，全期平均低估 17,501 kW）。
 
 ## 成员分工
 
