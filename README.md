@@ -34,7 +34,7 @@ python/
 | 5 | `project/05_final_figures.ipynb` | 成品图统一重绘 | 谭煜霖 | 待做 |
 
 > `03` 依赖 `data/processed/power_load_cleaned.csv`，须先跑 `01`。
-> 报告图 1—9 可用 `python project/polish_report_figures.py --apply` 从清洗数据重新生成；不加 `--apply` 时只输出到预览目录。
+> 报告图 1—9 可用 `python project/polish_report_figures.py --apply` 从清洗数据重新生成；报告图 10—11 可用 `python project/polish_model_figures.py --apply` 从预测表和消融表重新生成。两者不加 `--apply` 时都只输出到预览目录。
 
 ## 建模结果摘要（03_forecast_model）
 
@@ -56,6 +56,7 @@ python/
 ### 图表与预测文件（供谭煜霖出图 / PPT 使用）
 
 - **图表**：`figures/model/fig01~fig06_*.png`，统一 **300 dpi**，命名规则 `fig0N_主题.png`
+  - 报告用图另存为 `figures/model/fig10_pred_vs_actual.png`、`fig11_feature_ablation.png`，由 `project/polish_model_figures.py` 生成，原始 `fig01`—`fig06` 保留不动
 
   | 文件 | 内容 |
   |---|---|
@@ -99,6 +100,7 @@ python/
 | 03 预测建模 | 沈成源 | 已完成 | 3 个模型对比 + 特征消融；图 01—06（300 dpi）、`tables/predictions/`；合并时带入的冲突标记已清理，内容与 `b492669` 一致 |
 | 05 成品图统一重绘 | 谭煜霖 | 待完成 | 由谭煜霖负责 |
 | 报告图 1—9 视觉优化 | 江玉婷 | 已完成 | 9 张图统一配色、字号、标注与版式；数值与 `tables/` 一致，脚本为 `project/polish_report_figures.py` |
+| 报告图 10—11 视觉优化 | 江玉婷 | 已完成 | 图 10、图 11 与图 1—9 统一配色、字号和标注；数据直接取自 `tables/predictions/` 与 `tables/model_ablation.csv`，脚本为 `project/polish_model_figures.py` |
 | 报告统稿 | 江玉婷 | 已完成（本地，待补学号） | 20 页、11 图、8 表；第 7 章已补日前预测结论，第 8 章按姓名拆分个人承担；专业与学号待填 |
 
 详细的任务内容、验证结果和 Git 对应关系见 [`PROGRESS.md`](PROGRESS.md)。
