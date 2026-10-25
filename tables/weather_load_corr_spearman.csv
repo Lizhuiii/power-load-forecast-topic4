@@ -1,0 +1,6 @@
+﻿气象变量,zone_total_power_consumption,zone1_power_consumption,zone2_power_consumption,zone3_power_consumption
+temperature,0.468765,0.432734,0.378832,0.436418
+humidity,-0.305503,-0.299751,-0.308871,-0.211878
+wind_speed,0.10678,0.106745,0.087432,0.078994
+general_diffuse_flows,0.226871,0.261438,0.241583,0.08507
+diffuse_flows,0.082225,0.124854,0.097147,-0.021295
