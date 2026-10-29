@@ -32,7 +32,7 @@ python/
 | 2 | `project/02_load_patterns.ipynb` | 日/周/季节负荷规律 + 分区对比 | 江玉婷 | ✅ |
 | 3 | `project/04_weather_correlation.ipynb` | 气象-负荷相关性热力图 | 江玉婷 | ✅ |
 | 4 | `project/03_forecast_model.ipynb` | 持续性基线、线性回归与随机森林预测对比 | 沈成源 | ✅ |
-| 5 | `project/05_final_figures.ipynb` | 成品图统一重绘 | 谭煜霖 | 待做 |
+| 5 | `project/05_final_figures.ipynb` | 成品图统一重绘 | 谭煜霖 | ✅ |
 
 > `03` 依赖 `data/processed/power_load_cleaned.csv`，须先跑 `01`。
 > 报告图 1—9 可用 `python project/polish_report_figures.py --apply` 从清洗数据重新生成；报告图 10—11 可用 `python project/polish_model_figures.py --apply` 从预测表和消融表重新生成。两者不加 `--apply` 时都只输出到预览目录。
@@ -99,16 +99,15 @@ python/
 | 02 负荷规律与分区对比 | 江玉婷 | 已完成 | 报告图 1—6、10 张统计表 |
 | 04 气象相关性分析 | 江玉婷 | 已完成 | 报告图 7—9、5 张统计表 |
 | 03 预测建模 | 沈成源 | 已完成 | 3 个模型对比 + 特征消融；图 01—06（300 dpi）、`tables/predictions/`；合并时带入的冲突标记已清理，内容与 `b492669` 一致 |
-| 05 成品图统一重绘 | 谭煜霖 | 待完成 | 由谭煜霖负责 |
+| 05 成品图统一重绘 | 谭煜霖 | 已完成 | `project/05_final_figures.ipynb` 已规范为仓库相对路径；输出 4 张图到 `figures/cleaning/` |
 | 报告图 1—9 视觉优化 | 江玉婷 | 已完成 | 9 张图统一配色、字号、标注与版式；数值与 `tables/` 一致，脚本为 `project/polish_report_figures.py` |
 | 报告图 10—11 视觉优化 | 江玉婷 | 已完成 | 图 10、图 11 与图 1—9 统一配色、字号和标注；数据直接取自 `tables/predictions/` 与 `tables/model_ablation.csv`，脚本为 `project/polish_model_figures.py` |
-| 报告统稿 | 江玉婷 | 已完成 | 20 页、11 图、8 表；第 7 章已补日前预测结论，第 8 章按姓名拆分个人承担；三位成员学号已填，封面专业栏仍待补 |
+| 报告统稿 | 江玉婷 | 已完成 | 20 页、11 图、8 表；第 7 章已补日前预测结论，第 8 章按姓名拆分个人承担；学号和署名已填，专业栏按模板留空手填；已补 9.4 交付清单与预热期样本说明 |
 
 详细的任务内容、验证结果和 Git 对应关系见 [`PROGRESS.md`](PROGRESS.md)。
 
 ## 交付物清单
-- [ ] 5 分钟汇报视频（命名：组号_4_沈成源.mp4）
-- [ ] 汇报 PPT（命名：组号_4_沈成源.pptx）
-- [x] Word 报告电子版（已填学号并完成统稿，封面专业栏待补）
-- [x] PDF 报告（与 Word 同版导出，20 页、11 图、8 表）
+- [x] 5 分钟汇报视频（命名：组号_4_沈成源.mp4，谭煜霖提交）
+- [x] 汇报 PPT（命名：组号_4_沈成源.pptx，谭煜霖提交）
+- [x] Word 报告电子版（20 页、11 图、8 表；学号与署名已填，专业栏留空手填）
 - [ ] 纸质版报告（未来技术学院 418）

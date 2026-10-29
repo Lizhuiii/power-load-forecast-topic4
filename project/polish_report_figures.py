@@ -728,13 +728,14 @@ def month_hour_heatmap(frame: pd.DataFrame, out: Path) -> None:
     )
     for position, count in enumerate(negative_by_month):
         count_axis.text(
-            count + 0.7,
+            count + 0.9,
             position,
             f"{int(count)}",
             ha="left",
             va="center",
-            fontsize=8.2,
-            color=INK if count > 0 else "#98A3AD",
+            fontsize=9.8,
+            color=INK if count > 0 else "#8B969F",
+            fontweight="bold" if count >= 20 else "normal",
         )
     count_axis.set_xlim(0, 28)
     count_axis.set_ylim(11.5, -0.5)
